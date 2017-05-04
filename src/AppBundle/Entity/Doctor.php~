@@ -1,0 +1,102 @@
+<?php
+namespace AppBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Table(name="doctor")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\doctorsRepository")
+ */
+class Doctor {
+    /**
+     *
+     * @var int
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    
+     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="pediatr", type="boolean")
+     */
+    private $pediatr;
+    
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="specialist", type="boolean")
+     */
+    private $specialist;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fio", type="string", length=150)
+     */
+    private $fio;
+    
+    /**
+     * Номер участка
+     * @var int
+     * @ORM\Column(name="plot", type="integer", unique=false)
+     * 
+     */
+    private $plot;
+    
+     /**
+     * Номер кабинета педиатра
+     * 
+     * @var int
+     * @ORM\Column(name="cabinet_p", type="integer", unique=false)
+     * 
+     */
+    private $cabinet_p;
+    
+    /**
+     * Режим работы педиатра
+     * 
+     * @ORM\OneToMany(targetEntity="Schedule", mappedBy="doctor")
+     * 
+     */
+    private $mode_p;
+    
+    /**
+     * Филиал
+     * 
+     * @var string
+     * @ORM\Column(name="filial")
+     */
+    private $filial;
+
+
+    /**
+     * Должность
+     * 
+     * @ORM\Column(name="post", type="string", unique=false)
+     * 
+     * @var string
+     * 
+     */
+    private $post;
+    
+    
+    /**
+     * Номер кабинета специалиста
+     * @var int
+     * @ORM\Column(name="cabinet_s", type="integer", unique=false)
+     * 
+     */
+    private $cabinet_s;
+    
+    
+     /**
+     * Режим работы специалиста
+     * 
+     * @ORM\OneToMany(targetEntity="Schedule_s", mappedBy="specialist")
+     * 
+     */
+    private $mode_s;
+    
+}   
